@@ -61,7 +61,7 @@ You can find the explanations of each attribute in the Json below:
       
       "activation": After an error is injected, if there is an SDC, solver will converge to a wrong result. In that case, our set-up restarts the loop from the beginning calling it an activation. 
       
-      		    If activation is '-1' it means resulting vector was not wrong, if it is any other value, (>0), it means the solver exited the loop at that iteration but with a wrong value.   
+      If activation is '-1' it means resulting vector was not wrong, if it is any other value, (>0), it means the solver exited the loop at that iteration but with a wrong value.   
               
       "masked"    : Indicates if the injection was masked or not (0 or 1)
       
