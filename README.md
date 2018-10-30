@@ -3,17 +3,17 @@
 This repo houses the experiment results from fault injection study conducted on 6 solvers using 28 datasets. 
 
 ## Solvers
-*CG
+* CG
 
-*ICCG
+* ICCG
 
-*CGS
+* CGS
 
-*BICG
+* BICG
 
-*BICGSTAB
+* BICGSTAB
 
-*QMR
+* QMR
 
 
 ### Datasets
@@ -116,9 +116,12 @@ Run CG solver using bcsstk14 dataset with an error injected at the 4th statement
 Above is an example (simplified) output from the second example command. THe output first gives us which dataset, preconditioner, solver is used. 
 
 It gives the number of iterations performed, expected iteration count(baseline iterations) and resulting classification for this result (MASKED | ANOMALY | ADVERSE) 
-*MASKED means the execution took the same number of iterations as expected
-*ANOMALY means it took more or less than the expected number of iterations
-*ADVERSE means it took more than 2 times the expected number of iterations
+
+* MASKED means the execution took the same number of iterations as expected
+
+* ANOMALY means it took more or less than the expected number of iterations
+
+* ADVERSE means it took more than 2 times the expected number of iterations
 
 Some outputs has another line like `Activation enabled at 313`. This means the solver exited the loop at the 313th iteration but it converged to a wrong value, so our system restarted (reactivated) the iteration. 
 When classifying these instances, we label them as NOTCONVERGED (as they didn't converge to the right solution)
@@ -127,10 +130,10 @@ Output also lists other experimental parameters for the injection (vector, state
 
 ### Files
 
-*Injection_Results: This tarball includes results from the error injections. 
+* Injection_Results: This tarball includes results from the error injections. 
   Data is in json format. Each filename indicates the solver and dataset used for the experiments. 
 
-*Reconstructed_Results: This tarball includes error injection results for all possible statement-vector pairs. 
+* Reconstructed_Results: This tarball includes error injection results for all possible statement-vector pairs. 
   Data is in json format. Each filename indicates the solver and dataset used for the experiments. 
 
 
