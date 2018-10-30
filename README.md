@@ -84,27 +84,46 @@ Run CG solver using bcsstk14 dataset without injecting any erros
 `./cg_collect ../Datasets/bcsstk14/bcsstk14.rb 1 4 0 122 164 2 11 58`
 Run CG solver using bcsstk14 dataset with an error injected at the 4th statement, into vector id:0, during 122th iteration, 2 bit flips (11th and 58th) in the vector's 164th position.
 
-###Analyzing the output
-Using dataset: bcsstk14
-Preconditioner timing: 95
+### Analyzing the output
+
+`Using dataset: bcsstk14
+
 Fault inserted 122
+
 Iterative method: Diagonal Preconditioned CG
-flag = 0
+
 iterations performed: 203
-tolerance achieved  : 9.35839e-07
-time for method: 27670
-VALIDATION RESID: 0.003377
+
 Experimental Parameters:
+
 Baseline iterations: 195
+
 Iteration Check: ANOMALY
+
 Place in iterations space (when): 122
+
 Place in vector (where): 164
+
 Place among statements: 4
+
 Place among vectors: 0
+
 Bit flips: 11 58 
-Last iteration found: 203
+
+Last iteration found: 203`
 
 
+Above is an example (simplified) output from the second example command. THe output first gives us which dataset, preconditioner, solver is used. 
+
+It gives the number of iterations performed, expected iteration count(baseline iterations) and resulting classification for this result (MASKED | ANOMALY | ADVERSE) 
+*MASKED means the execution took the same number of iterations as expected
+*ANOMALY means it took more or less than the expected number of iterations
+*ADVERSE means it took more than 2 times the expected number of iterations
+
+Some outputs has another line like `Activation enabled at 313`. This means the solver exited the loop at the 313th iteration but it converged to a wrong value, so our system restarted (reactivated) the iteration. 
+When classifying these instances, we label them as NOTCONVERGED (as they didn't converge to the right solution)
+ 
+Output also lists other experimental parameters for the injection (vector, statement, position, etc)  
 
 ### Files
 
