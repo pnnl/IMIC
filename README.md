@@ -21,13 +21,98 @@ This repo houses the experiment results from fault injection study conducted on 
 Datasets are gathered from [SuiteSparse](https://sparse.tamu.edu/about) online tool, they are all positive definite sparse matrices.
 
 
+### Installation
+
+This repo also provide installation tools for reproducing the data collection environment. Here are the steps for installation:
+
+* download IMIC_installer.tar.gz and extract the files
+
+* run `bash IMIC_installer.sh`
+
+
+
+If installation finishes without any errors, there should be a IMIC folder ready. Under this folder you will find: 
+
+* SparseLib++/ 	: SparseLib library downloaded from [https://math.nist.gov/sparselib++/](https://math.nist.gov/sparselib++/)
+
+* Datasets/	: Folder for all datasets. There is an example dataset file obtained from [SuiteSparse](http://faculty.cse.tamu.edu/davis/suitesparse.html)
+
+* readRB/	: Rutherford-Boeing format data reader, patched from Harwell-Boeing format reader of SparseLib++
+
+* iters/	: Directory to house solvers' base iteration values. ie. the number of iterations it takes the solver to converge without any errors injected.
+
+  - /cg.csv	: For each solver there should be a csv file, each line corresponding to another dataset, and each line consists of SOLVER,DATASET,ITERATIONS
+
+* src/		: Source files used for the executable, `cg.h` and other solver implementations are obtained from [IML++ v1.2a](https://math.nist.gov/iml++/)  				
+
+  - /cg.h	: This implementation is instrumented with our fault injection mechanism as an example 
+
+
+
+
+### Running the Injector
+After the installation is completed you can run your own fault injection experiments for CG solver :
+
+Go to `IMIC/src/` . here you should find `cg_collect`. 
+
+Usage: ./cg_collect RBfile ISINSERT LINE_POSITION VECTOR_NUMBER ITERATION_NUMBER POSITION NUMBITFLIPS BITPOSITIONS 
+
+* RBFile	    : \[string\]Path to dataset file in Rutherford-Boeing format
+
+* ISINSERT	    : \[0|1\]Boolean value to determine if we want an injection to be done or not 0: no injection, 1: injection. If 0 is given, rest of the variables are not read
+
+* LINE_POSITION	    : \[int\]Statement number in the algorithm, for CG it varies between \[0\-7\)
+
+* VECTOR_NUMBER	    : \[int\]The vector id that is going to be injected with a fault, for CG the ids are: p:0, q:1, r:2, x:3, z:4. 
+
+* ITERATION_NUMBER  : \[int\]The iteration in which during an error is injected. max is base iterations (number of iterations it takes for the algorithm to converge without any errors present) 
+
+* POSITION	    : \[int\]Position in the vector that the error is introduced. max is the last index of the vector ( can be determines from the size of the dataset)
+
+* NUMBITFLIPS	    : \[int\]Number of bits to be flipped
+
+* BITPOSITIONS	    :\[space seperated integers \]The bit positions within the 64bit float to be flipped 
+
+
+Here are some example usages:
+
+`./cg_collect ../Datasets/bcsstk14/bcsstk14.rb 0 0 0 0 0 0`
+
+Run CG solver using bcsstk14 dataset without injecting any erros
+
+
+`./cg_collect ../Datasets/bcsstk14/bcsstk14.rb 1 4 0 122 164 2 11 58`
+Run CG solver using bcsstk14 dataset with an error injected at the 4th statement, into vector id:0, during 122th iteration, 2 bit flips (11th and 58th) in the vector's 164th position.
+
+###Analyzing the output
+Using dataset: bcsstk14
+Preconditioner timing: 95
+Fault inserted 122
+Iterative method: Diagonal Preconditioned CG
+flag = 0
+iterations performed: 203
+tolerance achieved  : 9.35839e-07
+time for method: 27670
+VALIDATION RESID: 0.003377
+Experimental Parameters:
+Baseline iterations: 195
+Iteration Check: ANOMALY
+Place in iterations space (when): 122
+Place in vector (where): 164
+Place among statements: 4
+Place among vectors: 0
+Bit flips: 11 58 
+Last iteration found: 203
+
+
+
 ### Files
 
 *Injection_Results: This tarball includes results from the error injections. 
   Data is in json format. Each filename indicates the solver and dataset used for the experiments. 
 
 *Reconstructed_Results: This tarball includes error injection results for all possible statement-vector pairs. 
-  Data is in json format. Each filename indicates the solver     and dataset used for the experiments. 
+  Data is in json format. Each filename indicates the solver and dataset used for the experiments. 
 
 
 
