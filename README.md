@@ -87,29 +87,29 @@ Run CG solver using bcsstk14 dataset with an error injected at the 4th statement
 ### Analyzing the output
 
 >Using dataset: bcsstk14
-
+>
 >Fault inserted 122
-
+>
 >Iterative method: Diagonal Preconditioned CG
-
+>
 >iterations performed: 203
-
+>
 >Experimental Parameters:
-
+>
 >Baseline iterations: 195
-
+>
 >Iteration Check: ANOMALY
-
+>
 >Place in iterations space (when): 122
-
+>
 >Place in vector (where): 164
-
+>
 >Place among statements: 4
-
+>
 >Place among vectors: 0
-
+>
 >Bit flips: 11 58 
-
+>
 >Last iteration found: 203
 
 
