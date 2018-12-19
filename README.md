@@ -1,5 +1,7 @@
 # IMIC : Iterative Method Fault Injection Collection
 
+In this study, we present a comprehensive characterization of the impact of soft errors on the convergence characteristics of six iterative methods using application-level fault injection. In particular, we consider the use of iterative methods to incrementally solve a linear systems of equations, which constitutes the core kernel in many scientific applications. We analyze the impact of soft errors in terms of the type of error (single- vs multi-bit), the distribution and location of bits affected, the data structure and the statement impacted, and variation with time. In addition to understanding the vulnerability of iterative solvers to soft errors, this characterization can aid the design of fault injection campaigns that ensure systematic coverage.
+
 This repo houses the experiment results from fault injection study conducted on 6 solvers using 28 datasets. 
 
 ## Solvers
