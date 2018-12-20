@@ -38,9 +38,9 @@ If you use this repository in your research, please cite the following paper:
 
 ```
 @article{IMIC:2018,
-  author    = {Mutlu, Burcu O. and Kestor, Gokcen and Manzano, Joseph and Unsal, Osman and Chatterjee,Samrat and    Krishnamoorthy,Sriram},
+  author    = {Mutlu, Burcu O. and Kestor, Gokcen and Manzano, Joseph and Unsal, Osman and Chatterjee,Samrat and Krishnamoorthy,Sriram},
   title     = {Characterization of the Impact of Soft Errors on Iterative Methods},
-  booktitle={2018 IEEE 25th International Conference on High Performance Computing (HiPC)},
+  booktitle = {2018 IEEE 25th International Conference on High Performance Computing (HiPC)},
   year      = {2018},
   }
 ```
