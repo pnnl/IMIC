@@ -37,7 +37,7 @@ We also provide tools for reproducing the data collection environment. Head over
 If you use this repository in your research, please cite the following paper:
 
 ```
-@article{IMIC:2018,
+@INPROCEEDINGS{IMIC:2018,
   author    = {Mutlu, Burcu O. and Kestor, Gokcen and Manzano, Joseph and Unsal, Osman and Chatterjee,Samrat and Krishnamoorthy,Sriram},
   title     = {Characterization of the Impact of Soft Errors on Iterative Methods},
   booktitle = {2018 IEEE 25th International Conference on High Performance Computing (HiPC)},
